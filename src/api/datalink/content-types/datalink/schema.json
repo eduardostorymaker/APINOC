@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "datalinks",
+  "info": {
+    "singularName": "datalink",
+    "pluralName": "datalinks",
+    "displayName": "datalink",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "group": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::linkgroup.linkgroup",
+      "inversedBy": "datalink"
+    },
+    "priority": {
+      "type": "integer"
+    }
+  }
+}

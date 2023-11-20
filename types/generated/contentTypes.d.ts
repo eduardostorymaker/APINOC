@@ -677,82 +677,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiContacttypeContacttype extends Schema.CollectionType {
-  collectionName: 'contacttypes';
-  info: {
-    singularName: 'contacttype';
-    pluralName: 'contacttypes';
-    displayName: 'contacttype';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    datacontacts: Attribute.Relation<
-      'api::contacttype.contacttype',
-      'oneToMany',
-      'api::datacontact.datacontact'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::contacttype.contacttype',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::contacttype.contacttype',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiDatacontactDatacontact extends Schema.CollectionType {
-  collectionName: 'datacontacts';
-  info: {
-    singularName: 'datacontact';
-    pluralName: 'datacontacts';
-    displayName: 'datacontact';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    value: Attribute.String;
-    type: Attribute.Relation<
-      'api::datacontact.datacontact',
-      'manyToOne',
-      'api::contacttype.contacttype'
-    >;
-    workteam: Attribute.Relation<
-      'api::datacontact.datacontact',
-      'manyToOne',
-      'api::workteam.workteam'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::datacontact.datacontact',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::datacontact.datacontact',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiDatalinkDatalink extends Schema.CollectionType {
   collectionName: 'datalinks';
   info: {
@@ -827,66 +751,6 @@ export interface ApiLinkgroupLinkgroup extends Schema.CollectionType {
   };
 }
 
-export interface ApiTestTest extends Schema.CollectionType {
-  collectionName: 'tests';
-  info: {
-    singularName: 'test';
-    pluralName: 'tests';
-    displayName: 'test';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Name: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::test.test', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::test.test', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiWorkteamWorkteam extends Schema.CollectionType {
-  collectionName: 'workteams';
-  info: {
-    singularName: 'workteam';
-    pluralName: 'workteams';
-    displayName: 'workteam';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    description: Attribute.String;
-    datacontacts: Attribute.Relation<
-      'api::workteam.workteam',
-      'oneToMany',
-      'api::datacontact.datacontact'
-    >;
-    priority: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::workteam.workteam',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::workteam.workteam',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -903,12 +767,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::contacttype.contacttype': ApiContacttypeContacttype;
-      'api::datacontact.datacontact': ApiDatacontactDatacontact;
       'api::datalink.datalink': ApiDatalinkDatalink;
       'api::linkgroup.linkgroup': ApiLinkgroupLinkgroup;
-      'api::test.test': ApiTestTest;
-      'api::workteam.workteam': ApiWorkteamWorkteam;
     }
   }
 }
